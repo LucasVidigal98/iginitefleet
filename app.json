@@ -2,6 +2,7 @@
   "expo": {
     "name": "iginitefleet",
     "slug": "iginitefleet",
+    "scheme": "iginitefleet",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -15,13 +16,15 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.lukasfvidigal.ignitefleet"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#202024"
-      }
+      },
+      "package": "com.lukasfvidigal.ignitefleet"
     },
     "web": {
       "favicon": "./assets/favicon.png"
