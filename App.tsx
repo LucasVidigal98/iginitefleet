@@ -1,3 +1,6 @@
+import 'react-native-get-random-values'
+import './src/libs/dayjs';
+
 import { useFonts, Roboto_400Regular, Roboto_700Bold } from '@expo-google-fonts/roboto';
 import { Signin } from './src/screens/SignIn';
 import { ThemeProvider } from 'styled-components/native';

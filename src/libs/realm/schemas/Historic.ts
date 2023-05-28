@@ -23,7 +23,7 @@ export class Historic extends Realm.Object<Historic> {
       description,
       status: 'departure',
       created_at: new Date(),
-      update_at: new Date(),
+      updated_at: new Date(),
     };
   }
 
