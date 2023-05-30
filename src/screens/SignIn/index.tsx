@@ -27,13 +27,13 @@ export function Signin() {
   function handleGoogleSignIn() {
     setIsAuthenticating(true);
 
-    setTimeout(() => setIsAuthenticating(false), 1000);
+    // setTimeout(() => setIsAuthenticating(false), 1000);
 
-    // googleSignIn().then((response) => {
-    //   if (response.type !== 'success') {
-    //     setIsAuthenticating(false);
-    //   }
-    // });
+    googleSignIn().then((response) => {
+      if (response.type !== 'success') {
+        setIsAuthenticating(false);
+      }
+    });
   }
 
   useEffect(() => {

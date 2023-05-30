@@ -11,10 +11,15 @@ import { AppProvider, UserProvider } from '@realm/react';
 import { REALM_APP_ID } from '@env';
 import { Routes } from './src/routes';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { RealmProvider } from './src/libs/realm';
+import { RealmProvider, syncConfig } from './src/libs/realm';
+import { TopMessage } from './src/components/TopMessage';
+import { WifiSlash } from 'phosphor-react-native';
+import { useNetInfo } from '@react-native-community/netinfo';
 
 export default function App() {
   const [fontsLoaded] = useFonts({ Roboto_400Regular, Roboto_700Bold });
+
+  const netInfo = useNetInfo();
 
   if (!fontsLoaded) {
     return (
@@ -26,15 +31,22 @@ export default function App() {
     <AppProvider id={REALM_APP_ID}>
       <ThemeProvider theme={theme}>
         <SafeAreaProvider style={{ flex: 1, backgroundColor: theme.COLORS.GRAY_800 }}>
-          <StatusBar barStyle="light-content" backgroundColor="transparent" translucent />
+          {
+            !netInfo.isConnected &&
+            <TopMessage
+              title='Voce esta off-line.'
+              icon={WifiSlash}
+            />
+          }
 
+          <StatusBar barStyle="light-content" backgroundColor="transparent" translucent />
           <RealmProvider>
             <Routes />
           </RealmProvider>
 
-          {/* <UserProvider fallback={SignIn}>
-
-        </UserProvider> */}
+          {/* <UserProvider fallback={Signin}>
+            
+          </UserProvider> */}
         </SafeAreaProvider>
       </ThemeProvider>
     </AppProvider>
