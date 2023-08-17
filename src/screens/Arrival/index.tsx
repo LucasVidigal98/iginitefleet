@@ -10,6 +10,7 @@ import { BSON } from 'realm';
 import { Alert } from 'react-native';
 import { useEffect, useState } from 'react';
 import { getLastSyncTimestamp } from '../../libs/asyncStorage/syncStorage';
+import { stopLoactionTask } from '../../tasks/backGroudLocationTaks';
 
 type RouteParamsProps = {
   id: string;
@@ -51,11 +52,13 @@ export function Arrival() {
     }
   }
 
-  function handleArrivalRegister() {
+  async function handleArrivalRegister() {
     try {
       if (!historic) {
         return Alert.alert('Error', 'Nao foi possivel obter os dados para registrar a chegada do veiculo.');
       }
+
+      await stopLoactionTask();
 
       realm.write(() => {
         historic.status = 'arrival';
